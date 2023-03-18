@@ -29,7 +29,7 @@ impl Graph {
     }
 
     pub fn add_arest(&mut self, first_vertex: Vertex, second_vertex: Vertex, weight: i32) -> () {
-        let arest = Arest::from(first_vertex, second_vertex, weight);
+        let arest = Arest::new(first_vertex, second_vertex, weight);
         if !self.arest_is_in_graph(&arest) {
             self.arests.push(arest);
         }

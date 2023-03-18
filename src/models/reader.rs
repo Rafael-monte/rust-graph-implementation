@@ -18,7 +18,7 @@ impl Reader {
         let mut reader = BufReader::new(file);
         reader.read_to_string(&mut content)?;
         for line in content.lines() {
-            
+            todo!("Implement file lines handling")
         }
 
         return Ok(Graph::new());
