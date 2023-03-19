@@ -19,3 +19,11 @@ impl PartialEq for Vertex {
         return self.value == other.value;
     }
 }
+
+impl Clone for Vertex {
+    fn clone(&self) -> Self {
+        let _pred_ref = *self.predecessor.clone();
+        let predecessor = Option::from(_pred_ref);
+        return Vertex::new(self.value.as_str(), predecessor);
+    }
+}

@@ -35,4 +35,17 @@ impl Graph {
         }
         return;
     }
+
+    pub fn add_fully_created_arest(&mut self, arest: Arest) {
+        if self.arest_is_in_graph(&arest) {
+           return; 
+        }
+        let _arest_clone = arest.clone();
+        self.arests.push(arest);
+        let vertexes = vec![_arest_clone.vertexes.0.clone(), _arest_clone.vertexes.1.clone()];
+        for vtx in vertexes {
+            self.add_vertex(vtx);
+        }
+
+    }
 }
