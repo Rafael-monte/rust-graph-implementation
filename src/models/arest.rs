@@ -3,8 +3,8 @@ use crate::utils;
 use super::vertex::Vertex;
 
 pub struct Arest {
-    vertexes: (Vertex, Vertex),
-    weight: i32,
+    pub vertexes: (Vertex, Vertex),
+    pub weight: i32,
 }
 
 impl Arest {
@@ -14,18 +14,16 @@ impl Arest {
             weight,
         };
     }
-
     pub fn from_line(line: &str) -> Self {
         let formatted = line.replace(" ", "").replace("\n", ""); 
-        let _formatted_as_slice = formatted.as_str();
-        let (_f_vtx_char, _s_vtx_char) = (_formatted_as_slice.chars().nth(0).unwrap(), _formatted_as_slice.chars().nth(1).unwrap());
-        let f_vtx_value = utils::char_to_string(&_f_vtx_char);
-        let s_vtx_value = utils::char_to_string(&_s_vtx_char);
-        let weight = _formatted_as_slice.chars().nth(2).unwrap() as i32;
-        return Arest {
-            vertexes: (Vertex::new(f_vtx_value.as_str(), Option::None), Vertex::new(s_vtx_value.as_str(), Option::None)),
+        let f_vtx_value = utils::char_to_string(&formatted.chars().nth(0).unwrap());
+        let s_vtx_value = utils::char_to_string(&formatted.chars().nth(1).unwrap());
+        let weight = utils::char_to_i32(&formatted.chars().nth(2).unwrap()).unwrap();
+        return Self::new(
+            Vertex::new(f_vtx_value.as_str(), Option::None), 
+            Vertex::new(s_vtx_value.as_str(), Option::None), 
             weight
-        }
+        );
     }
 }
 
@@ -42,5 +40,11 @@ impl PartialEq for Arest {
             return not_equal;
         }
         return equal;
+    }
+}
+
+impl Clone for Arest {
+    fn clone(&self) -> Self {
+        return Self::new(self.vertexes.0.clone(), self.vertexes.1.clone(), self.weight);
     }
 }
