@@ -4,7 +4,7 @@ use super::vertex::Vertex;
 
 pub struct Arest {
     pub vertexes: (Vertex, Vertex),
-    weight: i32,
+    pub weight: i32,
 }
 
 impl Arest {
@@ -18,7 +18,7 @@ impl Arest {
         let formatted = line.replace(" ", "").replace("\n", ""); 
         let f_vtx_value = utils::char_to_string(&formatted.chars().nth(0).unwrap());
         let s_vtx_value = utils::char_to_string(&formatted.chars().nth(1).unwrap());
-        let weight = formatted.chars().nth(2).unwrap() as i32;
+        let weight = utils::char_to_i32(&formatted.chars().nth(2).unwrap()).unwrap();
         return Self::new(
             Vertex::new(f_vtx_value.as_str(), Option::None), 
             Vertex::new(s_vtx_value.as_str(), Option::None), 

@@ -1,12 +1,12 @@
 pub struct Vertex {
     pub value: String,
-    pub predecessor: Box<Vertex>,
+    pub predecessor: Box<Option<Vertex>>,
 }
 
 
 impl Vertex {
     pub fn new(value: &str, predecessor: Option<Vertex>) -> Vertex {
-        let _predecessor = Box::from(predecessor.unwrap());
+        let _predecessor = Box::from(predecessor);
         return Vertex {
             value: String::from(value),
             predecessor: _predecessor

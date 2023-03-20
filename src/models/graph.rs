@@ -28,14 +28,6 @@ impl Graph {
         return;
     }
 
-    pub fn add_arest(&mut self, first_vertex: Vertex, second_vertex: Vertex, weight: i32) -> () {
-        let arest = Arest::new(first_vertex, second_vertex, weight);
-        if !self.arest_is_in_graph(&arest) {
-            self.arests.push(arest);
-        }
-        return;
-    }
-
     pub fn add_fully_created_arest(&mut self, arest: Arest) {
         if self.arest_is_in_graph(&arest) {
            return; 
@@ -46,6 +38,9 @@ impl Graph {
         for vtx in vertexes {
             self.add_vertex(vtx);
         }
+    }
 
+    pub fn get_arests(&self) -> &Vec<Arest> {
+        return &self.arests;
     }
 }
